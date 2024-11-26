@@ -1,6 +1,24 @@
-# Pan Da Pan - NFT Gaming Platform
+# Raid Rally - Quest Management System
 
-Next generation frontend tooling with Vite. It's fast!
+A blockchain-based quest tracking platform built with React, TypeScript, Supabase, and Solana integration.
+
+## Features
+
+- Dynamic quest submission and completion system
+- Blockchain-based verification using Solana
+- Real-time quest status tracking
+- User profile management
+- Pending submissions tracking
+- Quest completion analytics
+
+## Tech Stack
+
+- Frontend: React + TypeScript
+- Backend: Supabase
+- Database: PostgreSQL
+- Blockchain: Solana
+- Build Tool: Vite
+- Deployment: Vercel
 
 ## Quick Start
 
@@ -9,220 +27,97 @@ Next generation frontend tooling with Vite. It's fast!
 ```bash
 npm install
 ```
-3. Start development server:
+3. Set up environment variables:
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+VITE_SOLANA_NETWORK=devnet
+```
+4. Start development server:
 ```bash
 npm run dev
 ```
 
-## Firebase Setup
+## Supabase Setup
 
-### 1. Install Firebase CLI
-```bash
-npm install -g firebase-tools
-```
+1. Create a new Supabase project
+2. Run the database setup scripts from `supabase/migrations`
+3. Configure Row Level Security (RLS) policies
+4. Set up the required database functions:
+   - submit_quest
+   - reject_quest_submission
+   - get_available_quests
 
-### 2. Login to Firebase
-```bash
-firebase login
-```
-
-### 3. Initialize Firebase Project
-```bash
-firebase init
-```
-
-Select the following options:
-- Firestore
-- Hosting
-- Storage (optional)
-- Emulators (recommended for local development)
-
-### 4. Configure Firebase
-
-Create a `.env` file in the root directory:
-```env
-VITE_FIREBASE_API_KEY=your_api_key
-VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
-VITE_FIREBASE_PROJECT_ID=your_project_id
-VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
-VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-VITE_FIREBASE_APP_ID=your_app_id
-```
-
-### 5. Deploy to Firebase
-
-Build the project:
-```bash
-npm run build
-```
-
-Deploy to Firebase:
-```bash
-firebase deploy
-```
-
-To deploy only specific features:
-```bash
-# Deploy only hosting
-firebase deploy --only hosting
-
-# Deploy only firestore rules
-firebase deploy --only firestore:rules
-
-# Deploy only storage rules
-firebase deploy --only storage
-```
+For detailed database setup instructions, check the SQL files in the `supabase/` directory.
 
 ## Development
 
-### Local Development with Emulators
+### Local Development
 
-1. Start Firebase emulators:
+1. Install dependencies:
 ```bash
-firebase emulators:start
+npm install
 ```
 
-2. Start development server:
+2. Start the development server:
 ```bash
 npm run dev
 ```
 
-### Testing
+### Building for Production
+
+```bash
+npm run build
+npm run preview
+```
+
+## Deployment
+
+We use Vercel for deployment. See [vercel.md](./vercel.md) for detailed deployment instructions.
+
+Key deployment steps:
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Configure environment variables
+4. Deploy
+
+## Project Structure
+
+```
+├── src/
+│   ├── components/
+│   │   └── Raid/           # Quest-related components
+│   ├── hooks/              # Custom React hooks
+│   ├── lib/                # Utility functions
+│   └── types/              # TypeScript definitions
+├── supabase/
+│   ├── migrations/         # Database migration files
+│   └── functions/          # Database functions
+└── public/                 # Static assets
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+## Testing
 
 Run tests:
 ```bash
 npm run test
 ```
 
-### Linting
+## Linting
 
 Run ESLint:
 ```bash
 npm run lint
 ```
 
-## Project Structure
-
-```
-src/
-├── components/     # React components
-├── config/        # Configuration files
-├── contexts/      # React contexts
-├── hooks/         # Custom React hooks
-├── services/      # Service layer
-├── types/         # TypeScript types
-└── utils/         # Utility functions
-```
-
-## Database Schema
-
-### Firestore Collections
-
-1. Users Collection:
-```typescript
-interface User {
-  wallet: string;            // Primary key
-  username: string | null;
-  experience: number;
-  level: number;
-  questsCompleted: number;
-  raidBossesDefeated: number;
-  lastQuestCompletionTime: number;
-  guild: string | null;
-  archetype: string | null;
-  inventory: string[];
-  sessionKey?: string;
-}
-```
-
-2. Quests Collection:
-```typescript
-interface Quest {
-  id: string;
-  type: 'daily' | 'weekly' | 'monthly';
-  description: string;
-  xpReward: number;
-  dateCreated: number;
-  dateExpires: number;
-  status: 'available' | 'completed' | 'expired';
-  completedBy: string[];
-}
-```
-
-3. Guilds Collection:
-```typescript
-interface Guild {
-  id: string;
-  name: string;
-  description: string;
-  members: string[];
-  leaders: string[];
-  totalXp: number;
-  dateCreated: number;
-  archetype: string;
-}
-```
-
-## Security Rules
-
-Update Firestore security rules in `firestore.rules`:
-
-```javascript
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    // User profiles
-    match /users/{userId} {
-      allow read: if true;
-      allow write: if request.auth.uid == userId;
-    }
-    
-    // Quests
-    match /quests/{questId} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-    
-    // Guilds
-    match /guilds/{guildId} {
-      allow read: if true;
-      allow write: if request.auth != null 
-        && (resource == null 
-            || resource.data.leaders.hasAny([request.auth.uid]));
-    }
-  }
-}
-```
-
-## Environment Variables
-
-Required environment variables:
-
-```env
-# Firebase
-VITE_FIREBASE_API_KEY=
-VITE_FIREBASE_AUTH_DOMAIN=
-VITE_FIREBASE_PROJECT_ID=
-VITE_FIREBASE_STORAGE_BUCKET=
-VITE_FIREBASE_MESSAGING_SENDER_ID=
-VITE_FIREBASE_APP_ID=
-
-# Solana
-VITE_SOLANA_RPC_URL=
-VITE_SOLANA_NETWORK=
-
-# Helius (Transaction Relayer)
-VITE_HELIUS_API_KEY=
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details
+MIT License - see LICENSE file for details

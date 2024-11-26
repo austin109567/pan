@@ -5,7 +5,6 @@ import { nodePolyfills } from 'vite-plugin-node-polyfills';
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   // Load env file based on `mode` in the current working directory.
-  // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
   const env = loadEnv(mode, process.cwd(), '');
 
   return {
@@ -41,11 +40,10 @@ export default defineConfig(({ mode }) => {
             ],
             'crypto-vendor': ['crypto-js']
           }
-        },
-        external: ['crypto']
+        }
       },
-      chunkSizeWarningLimit: 1000,
-      reportCompressedSize: true
+      chunkSizeWarningLimit: 1600,
+      reportCompressedSize: false
     },
     resolve: {
       alias: {
@@ -77,17 +75,12 @@ export default defineConfig(({ mode }) => {
         },
       }
     },
-    cacheDir: 'node_modules/.vite',
-    worker: {
-      format: 'es',
-      plugins: []
-    },
-    publicDir: 'public',
-    assetsInclude: ['**/*.mp4'],
     define: {
-      // Expose env variables
-      'process.env': env
+      'process.env': env,
+      global: 'globalThis',
+      'process.env.NODE_DEBUG': false
     },
-    envPrefix: ['VITE_']
+    envPrefix: ['VITE_'],
+    base: '/'
   };
 });
