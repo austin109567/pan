@@ -1,0 +1,213 @@
+# RaidRally - NFT Gaming Platform
+Last Updated: 2024
+
+## 1. Project Overview
+RaidRally is a web3 gaming platform built on the Solana blockchain, combining NFT integration, social gaming features, and raid-based gameplay mechanics. The platform features a modern, responsive design with both light and dark themes.
+
+## 2. Core Components
+
+### Navigation System
+- Location: /src/components/Navigation/
+- Key Files:
+  * index.tsx: Main navigation component with desktop/mobile views
+  * MobileMenu.tsx: Slide-out mobile menu with haptic feedback
+  * MobileNav.tsx: Bottom navigation bar for mobile
+  * navigationItems.ts: Centralized route configuration
+
+### Authentication System
+- Wallet-based authentication using Solana
+- Guest mode support
+- Role-based access control (Admin/User)
+- Admin wallet: "8jN1XtgiuWeyNjzysYVqGZ1mPAG37sjmuCTnENz66wrs"
+
+### Core Features
+1. NFT System
+   - NFT Builder interface
+   - Collection viewing and management
+   - Integration with Solana NFT standards
+
+2. Raid System
+   - Quest management
+   - Raid boss battles
+   - XP and rewards system
+   - Leaderboards
+
+3. Guild System
+   - Guild creation and management
+   - Member management
+   - Guild statistics and rankings
+
+4. Social Features
+   - Community sections
+   - Player profiles
+   - Social links integration
+
+## 3. Technical Stack
+
+### Frontend
+- React 18.3.1 with TypeScript
+- Vite for build tooling
+- Tailwind CSS for styling
+- React Router for navigation
+
+### Blockchain Integration
+- @solana/wallet-adapter-base: ^0.9.23
+- @solana/wallet-adapter-phantom: ^0.9.24
+- @solana/wallet-adapter-react: ^0.15.35
+- @solana/web3.js: ^1.91.1
+
+### Backend Services
+- Firebase
+  * Firestore for data storage
+  * Firebase Storage for assets
+  * Firebase Authentication
+
+### State Management
+- React Context API for:
+  * Wallet state
+  * Authentication state
+  * Theme preferences
+  * Audio settings
+
+## 4. Key Features
+
+### Authentication & Authorization
+- Phantom wallet integration
+- Guest mode access
+- Role-based routing:
+  * Public routes (Home, Info, NFT Builder, Leaderboards)
+  * Protected routes (Raid, Guild, Profile, Settings)
+  * Admin routes (Admin Panel)
+
+### Navigation Features
+- Responsive design with desktop/mobile views
+- Bottom navigation bar for mobile
+- Slide-out menu with animations
+- Haptic feedback support
+- Dark/light theme support
+- Safe area insets for modern devices
+
+### Gaming Features
+1. Quest System
+   - Quest creation (admin)
+   - Quest completion tracking
+   - XP rewards
+   - Time-based expiration
+
+2. Raid System
+   - Raid boss management
+   - Player participation tracking
+   - Reward distribution
+   - Leaderboard rankings
+
+3. Guild System
+   - Guild creation
+   - Member management
+   - Guild statistics
+   - Guild rankings
+
+## 5. UI/UX Features
+
+### Theme System
+- Dark/light mode support
+- System preference detection
+- Persistent theme preferences
+- Custom color schemes
+- Dynamic theme switching
+
+### Mobile Optimization
+- Bottom navigation for easy thumb access
+- Slide-out menu with backdrop
+- Touch-friendly hit areas
+- Haptic feedback
+- Safe area considerations
+- Responsive images
+
+### Animations
+- Menu transitions
+- Page transitions
+- Loading states
+- Interactive feedback
+- Smooth scrolling
+
+## 6. Development Infrastructure
+
+### Build System
+- Vite for development and production builds
+- TypeScript configuration
+- ESLint for code quality
+- PostCSS for CSS processing
+
+### Deployment Options
+- Firebase Hosting
+- Vercel deployment
+- Netlify support
+
+### Development Tools
+- Hot module replacement
+- TypeScript type checking
+- ESLint code quality checks
+- Tailwind CSS utilities
+
+## 7. File Structure
+
+### Key Directories
+- /src/components/: React components
+- /src/contexts/: React context providers
+- /src/services/: Backend service integrations
+- /src/utils/: Utility functions
+- /src/types/: TypeScript type definitions
+- /public/: Static assets
+
+### Component Organization
+- Feature-based directory structure
+- Shared components in common directories
+- Context-specific components in feature directories
+
+## 8. Security Measures
+
+### Authentication
+- Wallet signature verification
+- Role-based access control
+- Protected route guards
+- Admin wallet validation
+
+### Data Protection
+- Firebase security rules
+- Environment variable management
+- Secure state management
+- API key protection
+
+## 9. Performance Considerations
+
+### Optimization Techniques
+- Code splitting
+- Lazy loading
+- Image optimization
+- Caching strategies
+- Bundle size optimization
+
+### Mobile Performance
+- Touch event optimization
+- Animation performance
+- Asset loading strategies
+- Network request management
+
+## 10. Future Improvements
+
+### Planned Features
+- Enhanced animations
+- Keyboard navigation
+- Advanced accessibility
+- Additional role permissions
+- Extended mobile features
+- Advanced guild features
+
+### Technical Debt
+- Component refactoring
+- Test coverage
+- Performance optimization
+- Documentation updates
+- Code organization
+
+This breakdown represents the current state of the RaidRally platform, a sophisticated web3 gaming application that combines blockchain technology with modern web development practices.

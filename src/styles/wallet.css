@@ -1,0 +1,102 @@
+/* Wallet Connection Styles */
+.wallet-connect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.status-message {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.status-message.connecting {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.status-message.authenticating {
+  background-color: #6366f1;
+  color: white;
+}
+
+.status-message.error {
+  background-color: #ef4444;
+  color: white;
+}
+
+.status-message.connected {
+  background-color: #10b981;
+  color: white;
+}
+
+.retry-button {
+  padding: 0.5rem 1rem;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.retry-button:hover {
+  background-color: #4338ca;
+}
+
+.retry-button:active {
+  transform: scale(0.98);
+}
+
+/* Wallet Button Override Styles */
+.wallet-adapter-button {
+  height: 48px !important;
+  padding: 0 24px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 12px !important;
+  background-color: #4f46e5 !important;
+  color: white !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.wallet-adapter-button:not([disabled]):hover {
+  background-color: #4338ca !important;
+}
+
+.wallet-adapter-button[disabled] {
+  background-color: #6b7280 !important;
+  cursor: not-allowed !important;
+}
+
+.wallet-adapter-button-trigger {
+  background-color: #4f46e5 !important;
+}
+
+/* Wallet Modal Override Styles */
+.wallet-adapter-modal-wrapper {
+  background-color: #1f2937 !important;
+}
+
+.wallet-adapter-modal-button-close {
+  background-color: #374151 !important;
+}
+
+.wallet-adapter-modal-list-more {
+  color: #9ca3af !important;
+}
+
+.wallet-adapter-modal-list {
+  margin: 0 0 4px !important;
+}
+
+.wallet-adapter-modal-list li:not(:first-of-type) {
+  margin-top: 4px !important;
+}
